@@ -44,9 +44,14 @@ INSTALLED_APPS = [
     'products',
     'orders'
 ]
-
+# Customization Starts Here
 AUTH_USER_MODEL = 'accounts.CustomUser'
-
+REST_FRAMEWORK = {
+    'DEFAULT_AUTHENTICATION_CLASSES': (
+        'rest_framework_simplejwt.authentication.JWTAuthentication',
+    ),
+}
+# Customization ends Here
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',

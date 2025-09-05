@@ -6,13 +6,14 @@ from .managers import CustomUserManager  # if you put manager in a separate file
 class DivisionChoices(models.TextChoices):
     DHAKA = 'Dhaka', 'Dhaka'
     CHITTAGONG = 'Chattogram', 'Chattogram'
-    KHULNA = 'Khulna', 'Khulna'
+    KHULNA = 'khulna', 'Khulna'
     RAJSHAHI = 'Rajshahi', 'Rajshahi'
     BARISHAL = 'Barishal', 'Barishal'
     SYLHET = 'Sylhet', 'Sylhet'
     RANGPUR = 'Rangpur', 'Rangpur'
     MYMENSINGH = 'Mymensingh', 'Mymensingh'
 class CustomUser(AbstractBaseUser, PermissionsMixin):
+    id=models.AutoField(primary_key=True)
     email = models.EmailField(unique=True)
     address=models.TextField(null=True)
     division = models.CharField(
@@ -21,7 +22,7 @@ class CustomUser(AbstractBaseUser, PermissionsMixin):
         default=DivisionChoices.DHAKA
     )
     phone_number=models.CharField(max_length=14,null=True)
-    username = models.CharField(max_length=100, blank=True, null=True)
+    username = models.CharField(max_length=100, blank=True, null=False, unique=True)
     is_staff = models.BooleanField(default=False)
     is_active = models.BooleanField(default=True)
     date_joined = models.DateTimeField(default=timezone.now)
