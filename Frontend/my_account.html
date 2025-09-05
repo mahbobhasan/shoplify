@@ -220,26 +220,26 @@
         </div>
 
         <!-- Update Password -->
-        <div class="card shadow border-0 mt-4">
-          <div class="card-body">
-            <h5 class="mb-3">Update Password</h5>
-            <form>
-              <div class="mb-3">
-                <label class="form-label">Current Password</label>
-                <input type="password" class="form-control">
-              </div>
-              <div class="mb-3">
-                <label class="form-label">New Password</label>
-                <input type="password" class="form-control">
-              </div>
-              <div class="mb-3">
-                <label class="form-label">Confirm Password</label>
-                <input type="password" class="form-control">
-              </div>
-              <button class="btn btn-primary w-100">Update Password</button>
-            </form>
-          </div>
-        </div>
+      <div class="card shadow border-0 mt-4">
+  <div class="card-body">
+    <h5 class="mb-3">Update Password</h5>
+    <form id="passwordForm">
+      <div class="mb-3">
+        <label class="form-label">Current Password</label>
+        <input type="password" id="currentPassword" class="form-control">
+      </div>
+      <div class="mb-3">
+        <label class="form-label">New Password</label>
+        <input type="password" id="newPassword" class="form-control">
+      </div>
+      <div class="mb-3">
+        <label class="form-label">Confirm Password</label>
+        <input type="password" id="confirmPassword" class="form-control">
+      </div>
+      <button type="submit" class="btn btn-primary w-100">Update Password</button>
+    </form>
+  </div>
+</div>
       </div>
 
       <!-- Order History -->
@@ -295,7 +295,6 @@
   <script src="lib/wow/wow.min.js"></script>
   <script src="lib/owlcarousel/owl.carousel.min.js"></script>
   <script src="js/main.js"></script>
-  <script src="js/my_account.js"></script>
 </body>
 
 </html>
