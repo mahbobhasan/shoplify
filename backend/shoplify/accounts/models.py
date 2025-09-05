@@ -20,6 +20,7 @@ class CustomUser(AbstractBaseUser, PermissionsMixin):
         choices=DivisionChoices.choices,
         default=DivisionChoices.DHAKA
     )
+    phone_number=models.CharField(max_length=14,null=True)
     username = models.CharField(max_length=100, blank=True, null=True)
     is_staff = models.BooleanField(default=False)
     is_active = models.BooleanField(default=True)
