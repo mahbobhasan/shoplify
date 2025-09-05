@@ -1,0 +1,335 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="utf-8">
+  <title>Shopl!fy - Product Details</title>
+  <meta content="width=device-width, initial-scale=1.0" name="viewport">
+
+  <!-- Google Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link
+    href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@400;500;600;700&family=Roboto:wght@400;500;700&display=swap"
+    rel="stylesheet">
+
+  <!-- Icons -->
+  <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.15.4/css/all.css" />
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.4.1/font/bootstrap-icons.css" rel="stylesheet">
+
+  <!-- Bootstrap -->
+  <link href="css/bootstrap.min.css" rel="stylesheet">
+
+  <!-- Template CSS -->
+  <link href="css/style.css" rel="stylesheet">
+</head>
+
+<body>
+      <!-- Header -->
+  
+    <div class="container-fluid px-5 py-4 d-none d-lg-block">
+        <div class="row gx-0 align-items-center text-center">
+            <div class="col-md-4 col-lg-3 text-center text-lg-start">
+                <div class="d-inline-flex align-items-center">
+                    <a href="" class="navbar-brand p-0">
+                        <h1 class="display-5 text-primary m-0"><i
+                                class="fas fa-shopping-bag text-secondary me-2"></i>Shopl!fy</h1>
+                        <!-- <img src="img/logo.png" alt="Logo"> -->
+                    </a>
+                </div>
+            </div>
+            <div class="col-md-4 col-lg-6 text-center">
+                <div class="position-relative ps-4">
+                    <div class="d-flex border rounded-pill">
+                        <input class="form-control border-0 rounded-pill w-100 py-3" type="text"
+                            data-bs-target="#dropdownToggle123" placeholder="Search Looking For?">
+                        <select class="form-select text-dark border-0 border-start rounded-0 p-3" style="width: 200px;">
+                            <option value="All Category">All Category</option>
+                            <option value="Pest Control-2">Category 1</option>
+                            <option value="Pest Control-3">Category 2</option>
+                            <option value="Pest Control-4">Category 3</option>
+                            <option value="Pest Control-5">Category 4</option>
+                        </select>
+                        <button type="button" class="btn btn-primary rounded-pill py-3 px-5" style="border: 0;"><i
+                                class="fas fa-search"></i></button>
+                    </div>
+                </div>
+            </div>
+           <div class="col-md-4 col-lg-3 text-center text-lg-end">
+                <a href="#" class="dropdown-toggle text-muted ms-2" data-bs-toggle="dropdown"><small><i
+                            class="fa fa-home me-2"></i> My Dashboard</small></a>
+                <div class="dropdown-menu rounded">
+                    <a href="login.html" class="dropdown-item"> Login</a>
+                    
+                    <a href="cart.html" class="dropdown-item"> My Cart</a>
+                   
+                    <a href="#" class="dropdown-item"> Account Settings</a>
+                    <a href="#" class="dropdown-item"> My Account</a>
+                    <a href="#" class="dropdown-item"> Log Out</a>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- Topbar End -->
+
+    <!-- Navbar & Hero Start -->
+    <div class="container-fluid nav-bar p-0">
+        <div class="row gx-0 bg-primary px-5 align-items-center">
+            <div class="col-lg-3 d-none d-lg-block">
+                <nav class="navbar navbar-light position-relative" style="width: 250px;">
+                    <button class="navbar-toggler border-0 fs-4 w-100 px-0 text-start" type="button"
+                        data-bs-toggle="collapse" data-bs-target="#allCat">
+                        <h4 class="m-0"><i class="fa fa-bars me-2"></i>All Categories</h4>
+                    </button>
+                    <div class="collapse navbar-collapse rounded-bottom" id="allCat">
+                        <div class="navbar-nav ms-auto py-0">
+                            <ul class="list-unstyled categories-bars">
+                                <li>
+                                    <div class="categories-bars-item">
+                                        <a href="#">Accessories</a>
+                                        <span>(3)</span>
+                                    </div>
+                                </li>
+                                <li>
+                                    <div class="categories-bars-item">
+                                        <a href="#">Electronics & Computer</a>
+                                        <span>(5)</span>
+                                    </div>
+                                </li>
+                                <li>
+                                    <div class="categories-bars-item">
+                                        <a href="#">Laptops & Desktops</a>
+                                        <span>(2)</span>
+                                    </div>
+                                </li>
+                                <li>
+                                    <div class="categories-bars-item">
+                                        <a href="#">Mobiles & Tablets</a>
+                                        <span>(8)</span>
+                                    </div>
+                                </li>
+                                <li>
+                                    <div class="categories-bars-item">
+                                        <a href="#">SmartPhone & Smart TV</a>
+                                        <span>(5)</span>
+                                    </div>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                </nav>
+            </div>
+            <div class="col-12 col-lg-9">
+                <nav class="navbar navbar-expand-lg navbar-light bg-primary ">
+                    <a href="" class="navbar-brand d-block d-lg-none">
+                        <h1 class="display-5 text-secondary m-0"><i
+                                class="fas fa-shopping-bag text-white me-2"></i>Electro</h1>
+                        <!-- <img src="img/logo.png" alt="Logo"> -->
+                    </a>
+                    <button class="navbar-toggler ms-auto" type="button" data-bs-toggle="collapse"
+                        data-bs-target="#navbarCollapse">
+                        <span class="fa fa-bars fa-1x"></span>
+                    </button>
+                    <div class="collapse navbar-collapse" id="navbarCollapse">
+                        <div class="navbar-nav ms-auto py-0">
+                            <a href="index.html" class="nav-item nav-link">Home</a>
+                            <a href="shop.html" class="nav-item nav-link">Shop</a>
+                            <div class="nav-item dropdown">
+                                <a href="#" class="nav-link active" data-bs-toggle="dropdown"><span
+                                        class="dropdown-toggle">Pages</span></a>
+                                <div class="dropdown-menu m-0">
+                                    
+                                    <a href="cart.html" class="dropdown-item">Cart Page</a>
+                                    <a href="cheackout.html" class="dropdown-item active">Checkout</a>
+                                  
+                                </div>
+                            </div>
+                            <a href="contact.html" class="nav-item nav-link me-2">Contact</a>
+                            <div class="nav-item dropdown d-block d-lg-none mb-3">
+                                <a href="#" class="nav-link" data-bs-toggle="dropdown"><span class="dropdown-toggle">All
+                                        Category</span></a>
+                                <div class="dropdown-menu m-0">
+                                    <ul class="list-unstyled categories-bars">
+                                        <li>
+                                            <div class="categories-bars-item">
+                                                <a href="#">Accessories</a>
+                                                <span>(3)</span>
+                                            </div>
+                                        </li>
+                                        <li>
+                                            <div class="categories-bars-item">
+                                                <a href="#">Electronics & Computer</a>
+                                                <span>(5)</span>
+                                            </div>
+                                        </li>
+                                        <li>
+                                            <div class="categories-bars-item">
+                                                <a href="#">Laptops & Desktops</a>
+                                                <span>(2)</span>
+                                            </div>
+                                        </li>
+                                        <li>
+                                            <div class="categories-bars-item">
+                                                <a href="#">Mobiles & Tablets</a>
+                                                <span>(8)</span>
+                                            </div>
+                                        </li>
+                                        <li>
+                                            <div class="categories-bars-item">
+                                                <a href="#">SmartPhone & Smart TV</a>
+                                                <span>(5)</span>
+                                            </div>
+                                        </li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+                       
+                </nav>
+            </div>
+        </div>
+    </div>
+    <!-- Navbar & Hero End -->
+  <!-- Header -->
+  <div class="container-fluid page-header py-5">
+    <h1 class="text-center text-white display-6">Product Details</h1>
+    <ol class="breadcrumb justify-content-center mb-0">
+      <li class="breadcrumb-item"><a href="index.html">Home</a></li>
+      <li class="breadcrumb-item"><a href="shop.html">Shop</a></li>
+      <li class="breadcrumb-item active text-white">Product Details</li>
+    </ol>
+  </div>
+
+  <!-- Product Details -->
+  <div class="container py-5">
+    <div class="row g-5">
+      <!-- Product Images -->
+      <div class="col-lg-5">
+        <div class="border rounded p-3 text-center">
+          <img src="img/Apple-iPad-Mini.jpg" class="img-fluid rounded" alt="Product Image">
+        </div>
+        <!-- Small thumbnails -->
+        <div class="d-flex justify-content-center gap-2 mt-3">
+          <img src="img/ipad-mini-7-colors.jpg" width="80" class="border rounded cursor-pointer" alt="">
+          <img src="img/product-2.jpg" width="80" class="border rounded cursor-pointer" alt="Chobi add kor">
+          <img src="img/product-3.jpg" width="80" class="border rounded cursor-pointer" alt="">
+        </div>
+      </div>
+
+      <!-- Product Info -->
+      <div class="col-lg-7">
+        <h3 class="mb-3">Apple iPad Mini</h3>
+        <div class="d-flex mb-3">
+          <i class="fa fa-star text-warning"></i>
+          <i class="fa fa-star text-warning"></i>
+          <i class="fa fa-star text-warning"></i>
+          <i class="fa fa-star text-warning"></i>
+          <i class="fa fa-star-half-alt text-warning"></i>
+          <span class="ms-2">(120 Reviews)</span>
+        </div>
+        <h4 class="text-primary mb-3">$399 <del class="text-muted fs-6">$499</del></h4>
+        <p class="mb-4">
+          The Apple iPad Mini delivers powerful performance, a stunning Retina display, and all-day battery life. Perfect for work, play, and creativity.
+        </p>
+
+        <!-- Quantity + Buttons -->
+        <div class="d-flex align-items-center mb-4">
+          <input type="number" class="form-control w-25 me-3" value="1" min="1">
+          <button class="btn btn-primary me-2"><i class="fa fa-shopping-cart me-1"></i> Add to Cart</button>
+          <button class="btn btn-outline-secondary"><i class="fa fa-heart me-1"></i> Wishlist</button>
+        </div>
+
+        <ul class="list-unstyled">
+          <li><strong>Category:</strong> Tablets</li>
+          <li><strong>Availability:</strong> In Stock</li>
+          <li><strong>Shipping:</strong> Free Shipping on orders over $100</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+
+  <!-- Reviews Section -->
+  <div class="container py-5">
+    <h4 class="mb-4">Customer Reviews</h4>
+    <div class="border p-3 mb-3 rounded">
+      <div class="d-flex align-items-center mb-2">
+        <i class="fa fa-user-circle fa-2x me-2"></i>
+        <strong>Mahbob Hasan Sazib</strong>
+      </div>
+      <p class="mb-1">⭐⭐⭐⭐⭐ - Excellent product! Super smooth and fast.</p>
+    </div>
+    <div class="border p-3 mb-3 rounded">
+      <div class="d-flex align-items-center mb-2">
+        <i class="fa fa-user-circle fa-2x me-2"></i>
+        <strong>Fayaz Ali Muktadir</strong>
+      </div>
+      <p class="mb-1">⭐⭐⭐⭐ - Great tablet, but battery could last longer.</p>
+    </div>
+    <button class="btn btn-primary">Write a Review</button>
+  </div>
+
+  <!-- Related Products -->
+<div class="container py-5">
+    <h4 class="mb-4">Related Products</h4>
+    <div class="row g-4">
+        <div class="col-md-3">
+            <div class="card shadow-sm">
+                <a href="product-details.html">
+                    <img src="img/product-2.png" class="card-img-top img-fluid" alt="Samsung Galaxy Tab">
+                </a>
+                <div class="card-body text-center">
+                    <h6 class="card-title">Samsung Galaxy Tab</h6>
+                    <p class="text-primary mb-2">$299</p>
+                    <a href="product-details.html" class="btn btn-sm btn-outline-primary">View</a>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-3">
+            <div class="card shadow-sm">
+                <a href="product-details.html">
+                    <img src="img/product-3.png" class="card-img-top img-fluid" alt="Lenovo Tablet">
+                </a>
+                <div class="card-body text-center">
+                    <h6 class="card-title">Lenovo Tablet</h6>
+                    <p class="text-primary mb-2">$259</p>
+                    <a href="product-details.html" class="btn btn-sm btn-outline-primary">View</a>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-3">
+            <div class="card shadow-sm">
+                <a href="product-details.html">
+                    <img src="img/product-4.png" class="card-img-top img-fluid" alt="Apple iPad Air">
+                </a>
+                <div class="card-body text-center">
+                    <h6 class="card-title">Apple iPad Air</h6>
+                    <p class="text-primary mb-2">$429</p>
+                    <a href="product-details.html" class="btn btn-sm btn-outline-primary">View</a>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-3">
+            <div class="card shadow-sm">
+                <a href="product-details.html">
+                    <img src="img/product-5.png" class="card-img-top img-fluid" alt="Huawei Tablet">
+                </a>
+                <div class="card-body text-center">
+                    <h6 class="card-title">Huawei Tablet</h6>
+                    <p class="text-primary mb-2">$199</p>
+                    <a href="product-details.html" class="btn btn-sm btn-outline-primary">View</a>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+  <!-- Footer  -->
+
+  <!-- JS Files -->
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.4/jquery.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0/dist/js/bootstrap.bundle.min.js"></script>
+  <script src="js/main.js"></script>
+</body>
+
+</html>

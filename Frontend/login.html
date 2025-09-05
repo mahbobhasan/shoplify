@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Login - Shoplify</title>
+  <link rel="stylesheet" href="login.css">
+</head>
+<body>
+  
+  <div class="container" id="container">
+    <div class="form-container sign-up-container">
+      <form action="signup_process.php" method="POST">
+        <h1>Create Account</h1>
+        <input type="text" placeholder="Full Name" name="name" required />
+        <input type="email" placeholder="Email" name="email" required />
+        <input type="password" placeholder="Password" name="password" required />
+        <button type="submit">Sign Up</button>
+        <a href="index.html" class="home-btn">Go to Home</a>
+      </form>
+    </div>
+
+    <div class="form-container sign-in-container">
+      <form id="loginForm" method="POST">
+        <h1>Sign in to Shopl!fy</h1>
+        <input type="email" placeholder="Email" name="email" required />
+        <input type="password" placeholder="Password" name="password" required />
+        <button type="submit">Login</button>
+        <a href="index.html" class="home-btn">Go to Home</a>
+      </form>
+    </div>
+    <div class="overlay-container">
+      <div class="overlay">
+        <div class="overlay-panel overlay-left">
+          <h1>Welcome Back!</h1>
+          <p>Already have an account?</p>
+          <button class="ghost" id="signIn">Sign In</button>
+          
+        </div>
+        <div class="overlay-panel overlay-right">
+          <h1>Hello, Shopl!fy</h1>
+          <p>Start your journey with Shopl!fy by creating an account.</p>
+          <button class="ghost" id="signUp">Sign Up</button>
+          
+        </div>
+      </div>  
+    </div>
+  </div>
+
+  <script src="login.js"></script>
+</body>
+</html>
