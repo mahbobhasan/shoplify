@@ -2,7 +2,7 @@ from rest_framework.views import APIView
 from rest_framework.response import Response
 from rest_framework.permissions import IsAuthenticated
 from rest_framework import status
-from .serializers import UserRegisterSerializer,UserLoginSerializer,ChangePasswordSerializer
+from .serializers import UserRegisterSerializer,UserLoginSerializer,ChangePasswordSerializer,UserProfileSerializer
 from rest_framework_simplejwt.tokens import RefreshToken
 class UserRegisterAPIView(APIView):
     def post(self, request):
@@ -25,6 +25,12 @@ class UserLoginAPIView(APIView):
             }, status=status.HTTP_200_OK)
         return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
     
+class UserProfileAPIView(APIView):
+    permission_classes = [IsAuthenticated]  # ✅ Only logged-in users can access
+
+    def get(self, request):
+        serializer = UserProfileSerializer(request.user)  # ✅ Serialize the logged-in user's data
+        return Response(serializer.data, status=200)
 class ChangePasswordAPIView(APIView):
     permission_classes = [IsAuthenticated]  # User must be logged in
 
