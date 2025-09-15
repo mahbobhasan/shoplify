@@ -56,4 +56,4 @@ class CategoryRetriveUpdateDeleteAPIView(APIView):
     def put(self,request,pk):
         if request.user.is_staff:
             return self.generalize.update_obj(request=request,pk=pk)
-        return Response(data={"error":"only admin can update a  product"}, status=status.HTTP_403_FORBIDDEN)
+        return Response(data={"error":"only admin can update a  category"}, status=status.HTTP_403_FORBIDDEN)
