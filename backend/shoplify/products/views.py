@@ -49,5 +49,11 @@ class CategoryListCreateAPIView(APIView):
         return self.generalize.get_all_obj(request=request)
 
 class CategoryRetriveUpdateDeleteAPIView(APIView):
+    permission_classes=[IsAuthenticatedOrReadOnly]
+    generalize=Generalize(serializer=CategorySerializer,model=Category)
     def get(self,request,pk):
-        pass
+        return self.generalize.get_obj_details(request=request,pk=pk)
+    def put(self,request,pk):
+        if request.user.is_staff:
+            return self.generalize.update_obj(request=request,pk=pk)
+        return Response(data={"error":"only admin can update a  product"}, status=status.HTTP_403_FORBIDDEN)
