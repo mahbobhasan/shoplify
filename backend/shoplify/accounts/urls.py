@@ -8,5 +8,5 @@ urlpatterns = [
     path('change-password/', ChangePasswordAPIView.as_view(), name='change-password'),
     
      # Product App connect kortesi
-    path('products/', include('product.urls')),  
+    
 ]
