@@ -38,7 +38,11 @@ class UserLoginSerializer(serializers.Serializer):
             raise serializers.ValidationError("Invalid email or password")
         data['user'] = user
         return data
-    
+
+class UserProfileSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = CustomUser
+        fields = ["id", "username", "email"]
 class ChangePasswordSerializer(serializers.Serializer):
     old_password = serializers.CharField(required=True, write_only=True, style={'input_type': 'password'})
     new_password = serializers.CharField(required=True, write_only=True, style={'input_type': 'password'})
