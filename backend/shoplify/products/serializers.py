@@ -50,3 +50,9 @@ class ProductSerializer(ModelSerializer):
                 raise serializers.ValidationError("Cost price cannot be greater than unit price.")
 
         return attrs
+
+class CategorySerializer(ModelSerializer):
+    products=ProductSerializer(many=True,read_only=True)
+    class Meta:
+        model=Category
+        fields=["category_name","products"]
