@@ -68,23 +68,22 @@ class ProductSearchView(APIView):
     Search products by name and return related products in the same category.
     Example: /api/products/search/?q=phone
     """
-    def get(self, request):
-        query = request.GET.get('q', '')  
-        if not query:
+    def get(self, request,search_key):
+        
+        if not search_key:
             return Response({"error": "Please provide a search query."}, status=status.HTTP_400_BAD_REQUEST)
 
         
-        matched_products = Product.objects.filter(product_name__icontains=query)
+        matched_products = Product.objects.filter(product_name__icontains=search_key)
 
         if not matched_products.exists():
             return Response({"message": "No products found."}, status=status.HTTP_404_NOT_FOUND)
 
        
         categories = matched_products.values_list('category', flat=True).distinct()
-        related_products = Product.objects.filter(category__in=categories).exclude(id__in=matched_products.values_list('id', flat=True))
 
         
-        final_products = matched_products | related_products
+        final_products = matched_products 
 
         serializer = ProductListSerializer(final_products, many=True, context={'request': request})
         return Response(serializer.data, status=status.HTTP_200_OK)
