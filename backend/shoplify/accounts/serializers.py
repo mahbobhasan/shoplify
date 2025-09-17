@@ -3,6 +3,8 @@ from rest_framework import serializers
 from .models import CustomUser, DivisionChoices
 from django.contrib.auth import authenticate
 from django.contrib.auth import password_validation
+from orders.models import OrderItem,OrderHistory
+
 class UserRegisterSerializer(serializers.ModelSerializer):
     password = serializers.CharField(write_only=True, required=True, style={'input_type': 'password'})
     password2 = serializers.CharField(write_only=True, required=True, style={'input_type': 'password'}, label="Confirm password")

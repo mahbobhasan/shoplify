@@ -1,4 +1,4 @@
-from django.urls import path
+from django.urls import path ,include
 from .views import UserRegisterAPIView,UserLoginAPIView,ChangePasswordAPIView,UserProfileAPIView
 
 urlpatterns = [
@@ -6,4 +6,7 @@ urlpatterns = [
     path('login/', UserLoginAPIView.as_view(), name='user-login'),
     path("profile/", UserProfileAPIView.as_view(), name="user-profile"),
     path('change-password/', ChangePasswordAPIView.as_view(), name='change-password'),
+    
+     # Product App connect kortesi
+    
 ]

@@ -69,3 +69,41 @@ fetch(`/api/products/${productId}/related/`)
       `;
     });
   });
+
+
+// #Fetch product list
+  fetch('http://127.0.0.1:8000/products/')
+  .then(response => response.json())
+  .then(data => {
+    const productList = document.getElementById('product-list');
+    data.forEach(product => {
+      const productItem = document.createElement('div');
+      productItem.innerHTML = `
+        <h3>${product.product_name}</h3>
+        <img src="${product.image_url}" width="150" />
+        <p>Price: $${product.unit_price}</p>
+      `;
+      productList.appendChild(productItem);
+    });
+  })
+  .catch(error => console.error('Error:', error));
+
+  // search products
+  function searchProducts() {
+    const query = document.getElementById('search-input').value;
+    fetch(`http://127.0.0.1:8000/products/search/?q=${query}`)
+      .then(response => response.json())
+      .then(data => {
+        const results = document.getElementById('search-results');
+        results.innerHTML = '';
+        data.forEach(product => {
+          const item = document.createElement('div');
+          item.innerHTML = `
+            <h4>${product.product_name}</h4>
+            <img src="${product.image_url}" width="100" />
+            <p>Price: $${product.unit_price}</p>
+          `;
+          results.appendChild(item);
+        });
+      });
+  }

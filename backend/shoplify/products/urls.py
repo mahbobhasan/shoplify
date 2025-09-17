@@ -1,7 +1,8 @@
 from django.urls import path
-from .views import ProductListCreateAPIView,ProductDetailAPIView,CategoryListCreateAPIView
+from .views import ProductListCreateAPIView,ProductDetailAPIView , RelatedProductsView , ProductSearchView
 urlpatterns=[
     path("",ProductListCreateAPIView.as_view(),name="product-list-create"),
     path("<int:pk>/",ProductDetailAPIView.as_view(),name="product-details"),
-    path("categories/",CategoryListCreateAPIView.as_view(),name="categoires")
+    path('related/<int:product_id>/', RelatedProductsView.as_view(), name='related-products'),
+    path('search/<str:search_key>/' , ProductSearchView.as_view(), name='product-search')
 ]

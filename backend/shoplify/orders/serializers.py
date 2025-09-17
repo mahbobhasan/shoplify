@@ -1,23 +1,33 @@
-from rest_framework.serializers import ModelSerializer
 from rest_framework import serializers
-from .models import Order,OrderItem
-from products.models import Product
-from orders.models import CustomUser
+from rest_framework.validators import ValidationError
+from .models import OrderItem,OrderHistory,CustomUser,Product,Order
 
-from products.serializers import ProductSerializer
-from accounts.serializers import UserProfileSerializer
-
-class OrderItemSerilizer(ModelSerializer):
+class OrderItemSerializer(serializers.ModelSerializer):
+    product=serializers.IntegerField(source="product.product_id",read_only=True)
+    user=serializers.IntegerField(source="user.id",read_only=True)
     class Meta:
         model=OrderItem
         fields="__all__"
-class OrderSerializer(ModelSerializer):
-    items=OrderItemSerilizer(read_only=True,many=True)
+        read_only_fields = ["user"]
+    def validate_product(self,value):
+        if self.context['request'].method=="POST":
+            print("hellos")
+            prot=OrderItem.objects.filter(product=value,user=self.context['request'].user)
+            print("This is prot", prot)
+            if prot:
+                raise ValidationError({"error":"This product is already in your cart."})
+            print("validatin done")
+            return value
+        return value
+
+class OrderHistorySerializer(serializers.ModelSerializer):
+    class Meta:
+        model=OrderHistory
+        exclude=("created_at",)
+        read_only_fields = ["user", "created_at"]
+class OrderSerializer(serializers.ModelSerializer):
+    order_histories=OrderHistorySerializer(many=True,read_only=True)
     class Meta:
         model=Order
-        fields=["user","status","order_address","mobile","o_division","items"]
-        extra_kwargs={
-            "status":{"read_only":True}
-        }
-
-
+        fields="__all__"
+        read_only_fields = ["user", "created_at"]

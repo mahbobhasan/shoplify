@@ -1,37 +1,43 @@
 from django.db import models
-from products.models import Product
 from accounts.models import CustomUser
+from products.models import Product
+
 # Create your models here.
 
 class OrderStatus(models.TextChoices):
     PENDING="pending","Pending"
     CONFIRMED="confirmed","Confirmed"
-    CANCELLED="cancelled","Cancelled"
     FAILED="failed","Failed"
+    CANCELLED="cancelled","Cancelled"
 class Order(models.Model):
-    order_id = models.AutoField(primary_key=True)
-    user = models.ForeignKey(CustomUser, on_delete=models.CASCADE, related_name="orders")
-    created_at = models.DateTimeField(auto_now_add=True, null=True)
-    updated_at = models.DateTimeField(auto_now=True, null=True)
-    status = models.CharField(max_length=30,default=OrderStatus.PENDING)
-    order_address = models.TextField()
-    mobile = models.CharField(max_length=14,null=True)
-    o_division = models.CharField(max_length=14,null=True)
+    order_id=models.AutoField(primary_key=True)
+    user=models.ForeignKey(CustomUser,on_delete=models.CASCADE,related_name="orders")
+    order_address=models.TextField()
+    created_at=models.DateTimeField(auto_now_add=True,null=True)
+    mobile=models.CharField(max_length=14)
+    o_division=models.CharField(max_length=20)
 
     def __str__(self):
-        return f"Order {self.order_id} by {self.user}"
+        return f"{self.user}->{self.order_id}"
+
 
 class OrderItem(models.Model):
-    order = models.ForeignKey(Order, on_delete=models.CASCADE, related_name="items")
-    product = models.ForeignKey(Product, on_delete=models.CASCADE, related_name="order_items")
-    quantity = models.PositiveIntegerField(default=1)
+    user=models.ForeignKey(CustomUser,on_delete=models.CASCADE,related_name="items")
+    product=models.ForeignKey(Product,on_delete=models.CASCADE,related_name="items")
+    quantity=models.PositiveIntegerField(default=1)
+
     class Meta:
-        verbose_name="OrderItems"
-        unique_together = ("order", "product")
+        unique_together=("user","product")
+
+class OrderHistory(models.Model):
+    order=models.ForeignKey(Order,on_delete=models.CASCADE,related_name="order_histories")
+    user=models.ForeignKey(CustomUser,on_delete=models.CASCADE,related_name="order_histiories")
+    product=models.ForeignKey(Product,on_delete=models.CASCADE,related_name="order_histories")
+    status=models.CharField(max_length=50,default=OrderStatus.PENDING)
+    created_at=models.DateTimeField(auto_now_add=True,null=True)
+    quntity=models.PositiveIntegerField(default=1)
 
     def __str__(self):
-        return f"{self.product} in {self.order}"
-
-
-class Transaction(models.Model):
-    pass
+        return f"{self.user}->{self.product}"
+    class Meta:
+        unique_together=("order","user","product")
