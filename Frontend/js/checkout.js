@@ -50,5 +50,27 @@ document.addEventListener("DOMContentLoaded", () => {
         })
     .catch((err) => console.error("Error fetching order items:", err));
     console.log(total)
+
+    const checkout_form = document.getElementById("checkout-form")
+    checkout_form.addEventListener("submit", async (event) => {
+        event.preventDefault()
+        const frm = event.target
+        const frm_data = new FormData(frm)
+        const res = await fetch("http://127.0.0.1:8000/orders/", {
+            method: "POST",
+            body: frm_data,
+            headers: {
+                Authorization: localStorage.getItem("Authorization"),
+            }
+        });
+        if (res.ok) {
+            alert("Order successfully placed. Redirecting to your dashboard")
+            window.location.href = "../my_account.html"
+            
+        }
+        else {
+          alert("Error occured")  
+        }
+    })
 });
 
