@@ -1,3 +1,5 @@
+from django.http import HttpResponseRedirect
+from django.shortcuts import redirect
 from rest_framework.views import APIView
 from rest_framework.response import Response
 from rest_framework.permissions import IsAuthenticated
@@ -20,6 +22,7 @@ class UserLoginAPIView(APIView):
         if serializer.is_valid():
             user = serializer.validated_data['user']
             refresh = RefreshToken.for_user(user)
+            
             return Response({
                 'refresh': str(refresh),
                 'access': str(refresh.access_token),

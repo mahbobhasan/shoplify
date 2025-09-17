@@ -44,6 +44,7 @@ INSTALLED_APPS = [
     'accounts',
     'products',
     'orders'
+    
 ]
 # Customization Starts Here
 # Edit media
