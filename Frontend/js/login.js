@@ -1,3 +1,10 @@
+const container = document.getElementById('container');
+document.getElementById('signUp').addEventListener('click', () => {
+  container.classList.add("right-panel-active");
+});
+document.getElementById('signIn').addEventListener('click', () => {
+  container.classList.remove("right-panel-active");
+});
 
 document.addEventListener("DOMContentLoaded", () => {
   // Handle Signup
@@ -6,14 +13,15 @@ document.addEventListener("DOMContentLoaded", () => {
     e.preventDefault();
 
     const formData = {
-      name: signupForm.name.value,
+      username: signupForm.name.value,
       email: signupForm.email.value,
-      password: signupForm.password.value
+      password: signupForm.password.value,
+      password2:signupForm.password.value
     };
 
     try {
-      const response = await fetch("/api/register/", {
-        method: "POST",
+      const response = await fetch("http://127.0.0.1:8000/accounts/register/", {
+        method: "POST", 
         headers: {
           "Content-Type": "application/json"
         },
@@ -43,7 +51,7 @@ document.addEventListener("DOMContentLoaded", () => {
     };
 
     try {
-      const response = await fetch("/api/login/", {
+      const response = await fetch("http://127.0.0.1:8000/accounts/login/", {
         method: "POST",
         headers: {
           "Content-Type": "application/json"
@@ -54,7 +62,7 @@ document.addEventListener("DOMContentLoaded", () => {
       const data = await response.json();
       if (response.ok) {
         alert("✅ Login successful!");
-        localStorage.setItem("token", data.token); // store JWT for later
+        localStorage.setItem("Authorization", data.access); // store JWT for later
         window.location.href = "index.html"; // redirect to home
       } else {
         alert("❌ Login failed: " + (data.detail || JSON.stringify(data)));

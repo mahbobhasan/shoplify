@@ -39,6 +39,7 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
 
     # third party apps
+    'corsheaders',
     'rest_framework',
     'accounts',
     'products',
@@ -57,6 +58,8 @@ REST_FRAMEWORK = {
 }
 # Customization ends Here
 MIDDLEWARE = [
+    'corsheaders.middleware.CorsMiddleware',
+    'django.middleware.common.CommonMiddleware',
     'django.middleware.security.SecurityMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
     'django.middleware.common.CommonMiddleware',
@@ -95,6 +98,8 @@ DATABASES = {
         'NAME': BASE_DIR / 'db.sqlite3',
     }
 }
+
+CORS_ALLOW_ALL_ORIGINS = True
 
 
 # Password validation

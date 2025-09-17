@@ -1,14 +1,63 @@
+document.addEventListener("DOMContentLoaded", () => {
+    const API_URL = "http://127.0.0.1:8000/products/1/";
+    const container = document.getElementById("product-details-container");
+
+    fetch(API_URL)
+        .then(response => response.json())
+        .then(product => {
+            const productHTML = `
+              <!-- Image Section -->
+              <div class="col-lg-5">
+                <div class="border rounded p-3 text-center">
+                  <img src="${product.image_url}" class="img-fluid rounded" alt="${product.product_name}">
+                </div>
+                <!-- Small thumbnails (for now repeat main image) -->
+                <div class="d-flex justify-content-center gap-2 mt-3">
+                  <img src="${product.image_url}" width="80" class="border rounded cursor-pointer" alt="">
+                  <img src="${product.image_url}" width="80" class="border rounded cursor-pointer" alt="">
+                  <img src="${product.image_url}" width="80" class="border rounded cursor-pointer" alt="">
+                </div>
+              </div>
+
+              <!-- Product Info -->
+              <div class="col-lg-7">
+                <h3 class="mb-3">${product.product_name}</h3>
+                <div class="d-flex mb-3">
+                  <i class="fa fa-star text-warning"></i>
+                  <i class="fa fa-star text-warning"></i>
+                  <i class="fa fa-star text-warning"></i>
+                  <i class="fa fa-star text-warning"></i>
+                  <i class="fa fa-star-half-alt text-warning"></i>
+                  <span class="ms-2">(120 Reviews)</span>
+                </div>
+                <h4 class="text-primary mb-3">$${product.unit_price}</h4>
+                <p class="mb-4">
+                  This is a ${product.product_name}. Perfect choice for daily use with amazing features.
+                </p>
+
+                <!-- Quantity + Buttons -->
+                <div class="d-flex align-items-center mb-4">
+                  <input type="number" class="form-control w-25 me-3" value="1" min="1" max="${product.quantity}">
+                  <button class="btn btn-primary me-2"><i class="fa fa-shopping-cart me-1"></i> Add to Cart</button>
+                  <button class="btn btn-outline-secondary"><i class="fa fa-heart me-1"></i> Wishlist</button>
+                </div>
+
+                <ul class="list-unstyled">
+                  <li><strong>Category:</strong> ${product.category}</li>
+                  <li><strong>Availability:</strong> ${product.quantity > 0 ? "In Stock" : "Out of Stock"}</li>
+                  <li><strong>Shipping:</strong> Free Shipping on orders over $100</li>
+                </ul>
+              </div>
+            `;
+
+            container.innerHTML = productHTML;
+        })
+        .catch(error => console.error("Error fetching product:", error));
+});
 const productId = 1; // Example: you can get this from URL or Django context
 
 // Fetch Product Details
-fetch(`/api/products/${productId}/`)
-  .then(res => res.json())
-  .then(data => {
-    document.querySelector(".product-title").textContent = data.name;
-    document.querySelector(".product-price").textContent = `$${data.price}`;
-    document.querySelector(".product-desc").textContent = data.description;
-    document.querySelector(".product-img").src = data.images[0];
-  });
+
 
 //pore review er ta add korte hobe
 // // Fetch Reviews

@@ -7,6 +7,7 @@ from rest_framework_simplejwt.tokens import RefreshToken
 class UserRegisterAPIView(APIView):
     def post(self, request):
         serializer = UserRegisterSerializer(data=request.data)
+        print(request.data)
         if serializer.is_valid():
             serializer.save()
             return Response({"message": "User registered successfully!"}, status=status.HTTP_201_CREATED)
