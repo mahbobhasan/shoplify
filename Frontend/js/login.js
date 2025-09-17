@@ -62,7 +62,7 @@ document.addEventListener("DOMContentLoaded", () => {
       const data = await response.json();
       if (response.ok) {
         alert("✅ Login successful!");
-        localStorage.setItem("Authorization", data.access); // store JWT for later
+        localStorage.setItem("Authorization", `Bearer ${data.access}`); // store JWT for later
         window.location.href = "index.html"; // redirect to home
       } else {
         alert("❌ Login failed: " + (data.detail || JSON.stringify(data)));

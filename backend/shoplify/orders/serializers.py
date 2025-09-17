@@ -4,6 +4,8 @@ from .models import OrderItem,OrderHistory,CustomUser,Product,Order
 
 class OrderItemSerializer(serializers.ModelSerializer):
     product=serializers.IntegerField(source="product.product_id",read_only=True)
+    product_name=serializers.CharField(source="product.product_name",read_only=True)
+    product_price=serializers.DecimalField(source="product.unit_price",read_only=True,max_digits=10,decimal_places=2)
     user=serializers.IntegerField(source="user.id",read_only=True)
     class Meta:
         model=OrderItem
