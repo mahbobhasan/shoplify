@@ -23,6 +23,7 @@ class OrderItemSerializer(serializers.ModelSerializer):
         return value
 
 class OrderHistorySerializer(serializers.ModelSerializer):
+    product_name=serializers.CharField(source="product.product_name",read_only=True)
     class Meta:
         model=OrderHistory
         exclude=("created_at",)

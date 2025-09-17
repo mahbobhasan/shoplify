@@ -12,10 +12,6 @@ from Generalization.GeneralViews import Generalize
 # ---------- Order Views ----------
 class OrderListCreateAPIView(APIView):
     permission_classes=[IsAuthenticated]
-    def get(self, request):
-        orderhistory = get_list_or_404(OrderHistory,user=request.user)
-        serializer = OrderHistorySerializer(orderhistory, many=True)
-        return Response(serializer.data)
 
     def post(self, request):
         serializer = OrderSerializer(data=request.data)
@@ -32,8 +28,9 @@ class OrderListCreateAPIView(APIView):
                 qty=item.quantity
                 orderhistory=OrderHistory.objects.create(order=order,user=user,product=item.product,quntity=qty)
                 print(orderhistory)
-
+                item.delete()
             return Response(serializer.data, status=status.HTTP_201_CREATED)
+        print(serializer.errors)
         return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
 
 
@@ -84,6 +81,7 @@ class OrderItemListCreateAPIView(APIView):
 
 # ---------- OrderHistory Views ----------
 class OrderHistoryListCreateAPIView(APIView):
+    permission_classes=[IsAuthenticated]
     def get(self, request):
         histories = OrderHistory.objects.filter(user=request.user)
         serializer = OrderHistorySerializer(histories, many=True)

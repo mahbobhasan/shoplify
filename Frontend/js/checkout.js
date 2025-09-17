@@ -23,14 +23,9 @@ document.addEventListener("DOMContentLoaded", () => {
           </td>
           <td>
             <div class="input-group quantity py-4" style="width: 100px;">
-              <div class="input-group-btn">
-                
-              </div>
-              <input type="text" class="form-control form-control-sm text-center border-0"
-                     value="${item.quantity}" disabled=true>
-              <div class="input-group-btn">
-                
-              </div>
+              
+              <span  class="form-control form-control-sm text-center border-0">${item.quantity}</span>
+              
             </div>
           </td>
           <td>
@@ -49,7 +44,6 @@ document.addEventListener("DOMContentLoaded", () => {
             cart_total.innerText = `${total+100} Taka`;
         })
     .catch((err) => console.error("Error fetching order items:", err));
-    console.log(total)
 
     const checkout_form = document.getElementById("checkout-form")
     checkout_form.addEventListener("submit", async (event) => {

@@ -36,34 +36,53 @@ async function loadProfile() {
 // Load Orders
 // --------------------
 async function loadOrders() {
+    const tableBody = document.getElementById("order-history-table");
+
     try {
-        const res = await fetch('/orders/api/my-orders/', {
-            method: 'GET',
+        const res = await fetch("http://127.0.0.1:8000/orders/order-history/", {
             headers: {
-                'Content-Type': 'application/json',
-                'Authorization': 'Token ' + localStorage.getItem('token')
+                Authorization: localStorage.getItem("Authorization") || ""
             }
         });
-
-        if (!res.ok) throw new Error('Failed to fetch orders');
+        if (!res.ok) throw new Error("Failed to fetch order history");
 
         const data = await res.json();
-        const orders = data.results || data; // support paginated or direct list
-        const tbody = document.querySelector(".table tbody");
-        tbody.innerHTML = ''; // clear existing rows
 
-        orders.forEach(order => {
-            const tr = document.createElement("tr");
-            tr.innerHTML = `
-                <td>#${order.id}</td>
-                <td>${order.product_name}</td>
-                <td><span class="badge ${getStatusClass(order.status)}">${order.status}</span></td>
+        // Clear the table first
+        tableBody.innerHTML = "";
+
+        data.forEach(item => {
+            // Map status to badge classes
+            let badgeClass = "";
+            switch(item.status) {
+                case "pending":
+                    badgeClass = "bg-warning text-dark";
+                    break;
+                case "delivered":
+                    badgeClass = "bg-success";
+                    break;
+                case "cancelled":
+                    badgeClass = "bg-danger";
+                    break;
+                case "shipped":
+                    badgeClass = "bg-info text-dark";
+                    break;
+                default:
+                    badgeClass = "bg-secondary";
+            }
+
+            const row = document.createElement("tr");
+            row.innerHTML = `
+                <td>#${item.order}</td>
+                <td> ${item.product_name} (Qty: ${item.quntity})</td>
+                <td><span class="badge ${badgeClass}">${item.status.charAt(0).toUpperCase() + item.status.slice(1)}</span></td>
             `;
-            tbody.appendChild(tr);
+            tableBody.appendChild(row);
         });
+
     } catch (err) {
         console.error(err);
-        alert("Failed to load orders.");
+        tableBody.innerHTML = `<tr><td colspan="3">Failed to load order history</td></tr>`;
     }
 }
 
