@@ -96,14 +96,8 @@ document.addEventListener("DOMContentLoaded", async () => {
           return response.json();
         })
         .then((result) => {
-          if (result.ok) {
-            console.log("Order placed successfully:", result.json());
             alert("Order placed!");
             window.location.href="../cart.html"
-          }
-          else {
-            alert("Failed to place order.",result.json());
-          }
         })
         .catch((error) => {
           console.error("Error placing order:", error);

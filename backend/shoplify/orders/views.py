@@ -56,6 +56,8 @@ class OrderItemListCreateAPIView(APIView):
         serializer = OrderItemSerializer(data=request.data,context={"request":request})
 
         product=get_object_or_404(Product,pk=request.data["product"])
+        if(product.quantity<int(request.data['quantity'])):
+            return Response({"Error":f"We have shortage of this product. please select less than {product.quantity}"},status=status.HTTP_400_BAD_REQUEST)
         if serializer.is_valid():
             serializer.save(user=request.user,product=product)
             return Response(serializer.data, status=status.HTTP_201_CREATED)
