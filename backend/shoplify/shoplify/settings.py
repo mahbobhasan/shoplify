@@ -39,10 +39,12 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
 
     # third party apps
+    'corsheaders',
     'rest_framework',
     'accounts',
     'products',
     'orders'
+    
 ]
 # Customization Starts Here
 # Edit media
@@ -57,6 +59,8 @@ REST_FRAMEWORK = {
 }
 # Customization ends Here
 MIDDLEWARE = [
+    'corsheaders.middleware.CorsMiddleware',
+    'django.middleware.common.CommonMiddleware',
     'django.middleware.security.SecurityMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
     'django.middleware.common.CommonMiddleware',
@@ -95,6 +99,8 @@ DATABASES = {
         'NAME': BASE_DIR / 'db.sqlite3',
     }
 }
+
+CORS_ALLOW_ALL_ORIGINS = True
 
 
 # Password validation
@@ -137,3 +143,20 @@ STATIC_URL = 'static/'
 # https://docs.djangoproject.com/en/5.2/ref/settings/#default-auto-field
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
+
+
+from datetime import timedelta
+
+SIMPLE_JWT = {
+    "ACCESS_TOKEN_LIFETIME": timedelta(minutes=120),   # default is 5 minutes
+    "REFRESH_TOKEN_LIFETIME": timedelta(days=7),       # default is 1 day
+}
+
+EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'
+
+EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
+EMAIL_HOST = 'smtp.gmail.com'
+EMAIL_PORT = 587
+EMAIL_USE_TLS = True
+EMAIL_HOST_USER = 'fayaz0116@student.nstu.edu.bd'
+EMAIL_HOST_PASSWORD = 'oajh hwql sznk nasu'

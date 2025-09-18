@@ -177,3 +177,43 @@
 
 })(jQuery);
 
+
+document.addEventListener("DOMContentLoaded", () => {
+    const API_URL = "http://127.0.0.1:8000/products/";
+    const container = document.getElementById("product-card-container");
+    container.innerHTML=""
+
+    // Fetch products
+    fetch(API_URL)
+        .then(response => response.json())
+        .then(products => {
+            products.forEach(product => {
+                // Create product card
+                const productHTML = `
+                <div class="col-md-6 col-lg-4 col-xl-3">
+                    <div class="product-item rounded wow fadeInUp" data-wow-delay="0.1s">
+                        <div class="product-item-inner border rounded">
+                            <div class="product-item-inner-item">
+                                <img src="${product.image_url}" class="img-fluid w-100 rounded-top" alt="${product.product_name}">
+                                <div class="product-new">New</div>
+                                <div class="product-details">
+                                    <a href="product_view.html?id=${product.product_id}"><i class="fa fa-eye fa-1x"></i></a>
+                                </div>
+                            </div>
+                            <div class="text-center rounded-bottom p-4">
+                                <a href="#" class="d-block mb-2">Category: ${product.category}</a>
+                                <a href="product_view.html" class="d-block h4">${product.product_name}</a>
+                                <span class="text-primary fs-5">৳${product.unit_price}</span>
+                                <p class="mt-2">In Stock: ${product.quantity}</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                `;
+
+                // Insert product into container
+                container.insertAdjacentHTML("beforeend", productHTML);
+            });
+        })
+        .catch(error => console.error("Error fetching products:", error));
+});

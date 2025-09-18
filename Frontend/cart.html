@@ -226,7 +226,7 @@
     <div class="container-fluid py-5">
         <div class="container py-5">
             <div class="table-responsive">
-                <table class="table">
+                <table class="table" >
                     <thead>
                         <tr>
                             <th scope="col">Name</th>
@@ -237,7 +237,7 @@
                             <th scope="col">Handle</th>
                         </tr>
                     </thead>
-                    <tbody>
+                    <tbody id="cart-table-body">
                         <tr>
                             <th scope="row">
                                 <p class="mb-0 py-4">Apple iPad Mini</p>
@@ -348,11 +348,11 @@
                 <div class="col-8"></div>
                 <div class="col-sm-8 col-md-7 col-lg-6 col-xl-4">
                     <div class="bg-light rounded">
-                        <div class="p-4">
+                        <div class="p-4 ">
                             <h1 class="display-6 mb-4">Cart Total</h1>
                             <div class="d-flex justify-content-between mb-4">
                                 <h5 class="mb-0 me-4">Subtotal:</h5>
-                                <p class="mb-0">96.00 Taka</p>
+                                <p class="mb-0" id="cart-subtotal">96.00 Taka</p>
                             </div>
                             <div class="d-flex justify-content-between">
                                 <h5 class="mb-0 me-4">Shipping</h5>
@@ -365,7 +365,7 @@
                         </div>
                         <div class="py-4 mb-4 border-top border-bottom d-flex justify-content-between">
                             <h5 class="mb-0 ps-4 me-4">Total</h5>
-                            <p class="mb-0 pe-4">196.00 Taka</p>
+                            <p class="mb-0 pe-4" id="cart-total">196.00 Taka</p>
                         </div>
                         <button class="btn btn-primary rounded-pill px-4 py-3 text-uppercase mb-4 ms-4"
                             type="button" onclick="window.location.href='cheackout.html'">Proceed Checkout</button>
@@ -519,6 +519,7 @@
 
     <!-- Template Javascript -->
     <script src="js/main.js"></script>
+    <script src="js/cart.js"></script>
 </body>
 
 </html>

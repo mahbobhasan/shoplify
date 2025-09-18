@@ -298,46 +298,23 @@
     <div class="container-fluid bg-light overflow-hidden py-5">
         <div class="container py-5">
             <h1 class="mb-4 wow fadeInUp" data-wow-delay="0.1s">Billing details</h1>
-            <form action="#">
+            <form  method="POST"  id="checkout-form">
                 <div class="row g-5">
                     <div class="col-md-12 col-lg-6 col-xl-6 wow fadeInUp" data-wow-delay="0.1s">
-
-
-                        <!-- <div class="form-item w-100">
-                            <label class="form-label my-3" for="billing-name">Name<sup>*</sup></label>
-                            <input type="text" id="billing-name" name="name" class="form-control">
-                        </div> -->
-
-
-
                         <div class="form-item">
                             <label class="form-label my-3" for="billing-address">Address <sup>*</sup></label>
-                            <input type="text" id="billing-address" name="address" class="form-control"
+                            <input type="text" id="billing-address" name="order_address" class="form-control"
                                 placeholder="House Number Street Name">
                         </div>
 
                         <div class="form-item">
                             <label class="form-label my-3" for="billing-city">Division<sup>*</sup></label>
-                            <input type="text" id="billing-city" name="city" class="form-control">
+                            <input type="text" id="billing-city" name="o_division" class="form-control">
                         </div>
-
-
-
 
                         <div class="form-item">
                             <label class="form-label my-3" for="billing-mobile">Mobile<sup>*</sup></label>
                             <input type="tel" id="billing-mobile" name="mobile" class="form-control">
-                        </div>
-
-                        <!-- <div class="form-item">
-                            <label class="form-label my-3" for="billing-email">Email Address<sup>*</sup></label>
-                            <input type="email" id="billing-email" name="email" class="form-control">
-                        </div> -->
-
-                        <div class="form-item">
-                            <label for="order-notes">Order Notes (Optional)</label>
-                            <textarea id="order-notes" name="notes" class="form-control" cols="30" rows="11"
-                                placeholder="Order Notes (Optional)"></textarea>
                         </div>
                     </div>
                     <div class="col-md-12 col-lg-6 col-xl-6 wow fadeInUp" data-wow-delay="0.3s">
@@ -352,7 +329,7 @@
                                         <th scope="col">Total</th>
                                     </tr>
                                 </thead>
-                                <tbody>
+                                <tbody id="cart-table-body">
                                     <tr class="text-center">
                                         <th scope="row" class="text-start py-4">
                                             Apple iPad Mini
@@ -440,15 +417,14 @@
 
                         <div class="row g-4 text-center align-items-center justify-content-center border-bottom py-2">
                             <div class="col-12">
-                                <div class="form-check text-start my-2">
-                                    <input type="checkbox" class="form-check-input bg-primary border-0" id="Paypal-1"
-                                        name="Paypal" value="Paypal">
-                                    <label class="form-check-label" for="Paypal-1">bkash</label>
-                                </div>
+                                Total with Shipping Charge =
+                            </div>
+                            <div class="col-12" >
+                                <h3 id="cart-total"></h3>
                             </div>
                         </div>
                         <div class="row g-4 text-center align-items-center justify-content-center pt-4">
-                            <button type="button"
+                            <button type="submit"
                                 class="btn btn-primary border-secondary py-3 px-4 text-uppercase w-100 text-primary">Place
                                 Order</button>
                         </div>

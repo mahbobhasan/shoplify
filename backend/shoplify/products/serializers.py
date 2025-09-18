@@ -3,6 +3,7 @@ from rest_framework import serializers
 from .models import Product,Category
 class ProductSerializer(ModelSerializer):
     image_url=serializers.SerializerMethodField()
+    category=serializers.CharField(source="category.category_name",read_only=True)
     class Meta:
         model=Product
         fields = [
@@ -54,10 +55,11 @@ class ProductSerializer(ModelSerializer):
 class ProductListSerializer(serializers.ModelSerializer):
     # Optional: include image URL for frontend
     image_url = serializers.SerializerMethodField()
+    
 
     class Meta:
         model = Product
-        fields = ['product_id', 'product_name', 'unit_price', 'image_url']
+        fields = ['product_id', 'product_name', 'unit_price', 'image_url',]
 
     def get_image_url(self, obj):
         request = self.context.get('request')
