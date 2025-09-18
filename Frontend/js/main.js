@@ -181,6 +181,7 @@
 document.addEventListener("DOMContentLoaded", () => {
     const API_URL = "http://127.0.0.1:8000/products/";
     const container = document.getElementById("product-card-container");
+    container.innerHTML=""
 
     // Fetch products
     fetch(API_URL)
