@@ -4,17 +4,36 @@ from rest_framework.views import APIView
 from rest_framework.response import Response
 from rest_framework.permissions import IsAuthenticated
 from rest_framework import status
+from django.core.mail import EmailMessage
+from django.contrib.sites.shortcuts import get_current_site
+from django.template.loader import render_to_string
+import json
+from django.utils.http import urlsafe_base64_encode
+from django.utils.encoding import force_bytes
 from .serializers import UserRegisterSerializer,UserLoginSerializer,ChangePasswordSerializer,UserProfileSerializer
 from rest_framework_simplejwt.tokens import RefreshToken
+import random
 class UserRegisterAPIView(APIView):
     def post(self, request):
         serializer = UserRegisterSerializer(data=request.data)
         print(request.data)
         if serializer.is_valid():
-            serializer.save()
+            user=serializer.save()
+            current_site = get_current_site(request)
+            uid = user.id
+            token = random.randint(1000, 9999)
+            mail_subject = 'Activate your account'
+            message = {
+                'user': user.username,
+                'domain': current_site.domain,
+                'uid': uid,
+                'token': token
+            }
+            email = EmailMessage(mail_subject, json.dumps(message), to=[user.email])
+            print(message)
+            email.send()
             return Response({"message": "User registered successfully!"}, status=status.HTTP_201_CREATED)
         return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
-    
 
 class UserLoginAPIView(APIView):
     def post(self, request):

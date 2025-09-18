@@ -13,6 +13,7 @@ class DivisionChoices(models.TextChoices):
     RANGPUR = 'Rangpur', 'Rangpur'
     MYMENSINGH = 'Mymensingh', 'Mymensingh'
 class CustomUser(AbstractBaseUser, PermissionsMixin):
+    is_varified=models.BooleanField(default=False)
     id=models.AutoField(primary_key=True)
     email = models.EmailField(unique=True)
     address=models.TextField(null=True)

@@ -151,3 +151,12 @@ SIMPLE_JWT = {
     "ACCESS_TOKEN_LIFETIME": timedelta(minutes=120),   # default is 5 minutes
     "REFRESH_TOKEN_LIFETIME": timedelta(days=7),       # default is 1 day
 }
+
+EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'
+
+EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
+EMAIL_HOST = 'smtp.gmail.com'
+EMAIL_PORT = 587
+EMAIL_USE_TLS = True
+EMAIL_HOST_USER = 'fayaz0116@student.nstu.edu.bd'
+EMAIL_HOST_PASSWORD = 'oajh hwql sznk nasu'
