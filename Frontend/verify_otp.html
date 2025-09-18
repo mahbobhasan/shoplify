@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>OTP Verification</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+      background-color: #f5f5f5;
+    }
+    .container {
+      background-color: white;
+      padding: 2rem;
+      border-radius: 8px;
+      box-shadow: 0 0 10px rgba(0,0,0,0.1);
+      width: 300px;
+      text-align: center;
+    }
+    input[type="text"] {
+      width: 100%;
+      padding: 0.5rem;
+      margin: 1rem 0;
+      font-size: 1rem;
+    }
+    button {
+      padding: 0.5rem 1rem;
+      font-size: 1rem;
+      cursor: pointer;
+      background-color: #4CAF50;
+      color: white;
+      border: none;
+      border-radius: 4px;
+    }
+    .error {
+      color: red;
+      margin-top: 0.5rem;
+    }
+    .success {
+      color: green;
+      margin-top: 0.5rem;
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <h2>Verify OTP</h2>
+    <input type="text" id="otp" placeholder="Enter 4-digit OTP" maxlength="4">
+    <button onclick="verifyOTP()">Verify</button>
+    <div id="message"></div>
+  </div>
+
+  <script>
+    const id=localStorage.getItem("user");
+    console.log(id)
+    async function verifyOTP() {
+      const otp = document.getElementById('otp').value;
+      const messageDiv = document.getElementById('message');
+      if (!otp) {
+        messageDiv.innerHTML = "<p class='error'>Please enter OTP</p>";
+        return;
+      }
+
+      try {
+        const response = await fetch(`http://127.0.0.1:8000/accounts/verify-otp/${id}/`, {
+          method: 'PUT',
+          headers: {
+            'Content-Type': 'application/json'
+          },
+          body: JSON.stringify({ otp: otp })
+        });
+
+        const data = await response.json();
+        console.log(data)
+        if (response.ok) {
+          messageDiv.innerHTML = "<p class='success'>OTP Verified Successfully!</p>";
+          // Redirect to dashboard or homepage after success
+          setTimeout(() => { window.location.href = '/dashboard'; }, 1500);
+        } else {
+          messageDiv.innerHTML = "<p class='error'>OTP Verification Success. Redirecting to signup...</p>";
+          // Redirect to signup page after 2 seconds
+          setTimeout(() => { window.location.href = '/signup'; }, 2000);
+        }
+      } catch (error) {
+        messageDiv.innerHTML = "<p class='error'>Something went wrong.</p>";
+      }
+    }
+  </script >
+</body>
+</html>

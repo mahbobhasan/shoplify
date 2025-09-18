@@ -1,38 +1,35 @@
-const container = document.getElementById('container');
-document.getElementById('signUp').addEventListener('click', () => {
-  container.classList.add("right-panel-active");
-});
-document.getElementById('signIn').addEventListener('click', () => {
-  container.classList.remove("right-panel-active");
-});
 
 document.addEventListener("DOMContentLoaded", () => {
+  const container = document.getElementById('container');
+  document.getElementById('signUp').addEventListener('click', () => {
+    container.classList.add("right-panel-active");
+  });
+  document.getElementById('signIn').addEventListener('click', () => {
+    container.classList.remove("right-panel-active");
+  });
   // Handle Signup
-  const signupForm = document.querySelector('.sign-up-container form');
+  const signupForm = document.getElementById('sign-up-form');
   signupForm.addEventListener("submit", async function (e) {
     e.preventDefault();
+    const frrm=e.target
+    const frm=new FormData(frrm)
+    frm.append("password2",signupForm.elements['password'].value)
+    
 
-    const formData = {
-      username: signupForm.name.value,
-      email: signupForm.email.value,
-      password: signupForm.password.value,
-      password2:signupForm.password.value
-    };
-
-    console.log(JSON.stringify(formData))
+    console.log(JSON.stringify(frm))
     try {
       const response = await fetch("http://127.0.0.1:8000/accounts/register/", {
         method: "POST", 
-        headers: {
-          "Content-Type": "application/json"
-        },
-        body: JSON.stringify(formData)
+        body: frm
       });
 
       const data = await response.json();
-      if (response.ok) {
-        alert("✅ Account created successfully!");
-        // Redirect or show login form
+     console.log(await data)
+      if ( response.ok) {
+      const user=await data.user
+      localStorage.setItem("user",await user)
+      alert("✅ Account created successfully!");
+      window.location.href="verify_otp.html"
       } else {
         alert("❌ Signup failed: " + (data.detail || JSON.stringify(data)));
       }
