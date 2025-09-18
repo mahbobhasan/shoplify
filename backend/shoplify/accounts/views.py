@@ -13,15 +13,19 @@ from django.utils.encoding import force_bytes
 from .serializers import UserRegisterSerializer,UserLoginSerializer,ChangePasswordSerializer,UserProfileSerializer
 from rest_framework_simplejwt.tokens import RefreshToken
 import random
+from .models import CustomUser
 class UserRegisterAPIView(APIView):
     def post(self, request):
         serializer = UserRegisterSerializer(data=request.data)
         print(request.data)
+        token = random.randint(1000, 9999)
         if serializer.is_valid():
             user=serializer.save()
+            user.token=token
+            user.save()
+            
             current_site = get_current_site(request)
             uid = user.id
-            token = random.randint(1000, 9999)
             mail_subject = 'Activate your account'
             message = {
                 'user': user.username,
@@ -32,7 +36,7 @@ class UserRegisterAPIView(APIView):
             email = EmailMessage(mail_subject, json.dumps(message), to=[user.email])
             print(message)
             email.send()
-            return Response({"message": "User registered successfully!"}, status=status.HTTP_201_CREATED)
+            return Response({"user":uid}, status=status.HTTP_201_CREATED)
         return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
 
 class UserLoginAPIView(APIView):
@@ -65,3 +69,14 @@ class ChangePasswordAPIView(APIView):
             user.save()
             return Response({"message": "Password updated successfully"}, status=status.HTTP_200_OK)
         return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
+    
+
+class VerifyView(APIView):
+    def put(self,request,id):
+        data=request.data
+        user=CustomUser.objects.get(pk=id)
+        print(type(data['otp']),type(user.token),user.token)
+        if int( data['otp'])==user.token:
+            user.is_varified=True
+            return Response({"success":"otp verified"}, status=status.HTTP_200_OK)
+        return Response({"error":"wrong otp"}, status=status.HTTP_400_BAD_REQUEST)
