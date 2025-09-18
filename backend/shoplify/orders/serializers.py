@@ -1,4 +1,5 @@
 from rest_framework import serializers
+from django.shortcuts import get_object_or_404
 from rest_framework.validators import ValidationError
 from .models import OrderItem,OrderHistory,CustomUser,Product,Order
 
@@ -14,10 +15,13 @@ class OrderItemSerializer(serializers.ModelSerializer):
     def validate_product(self,value):
         if self.context['request'].method=="POST":
             print("hellos")
-            prot=OrderItem.objects.filter(product=value,user=self.context['request'].user)
+            prod=get_object_or_404(Product,pk=self.context['request'].data['product'])
+            prot=OrderItem.objects.get(product=value,user=self.context['request'].user)
             print("This is prot", prot)
             if prot:
                 raise ValidationError({"error":"This product is already in your cart."})
+            if prod.quantity<self.context['request'].data['quantity']:
+                raise ValidationError({"error":"We don't have sufficient products of this type."})
             print("validatin done")
             return value
         return value

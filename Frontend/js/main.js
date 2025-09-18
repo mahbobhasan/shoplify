@@ -206,11 +206,6 @@ document.addEventListener("DOMContentLoaded", () => {
                                 <p class="mt-2">In Stock: ${product.quantity}</p>
                             </div>
                         </div>
-                        <div class="product-item-add border border-top-0 rounded-bottom text-center p-4 pt-0">
-                            <a href="#" class="btn btn-primary border-secondary rounded-pill py-2 px-4 mb-4">
-                                <i class="fas fa-shopping-cart me-2"></i> Add To Cart
-                            </a>
-                        </div>
                     </div>
                 </div>
                 `;

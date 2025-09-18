@@ -22,7 +22,7 @@ class CustomUser(AbstractBaseUser, PermissionsMixin):
         default=DivisionChoices.DHAKA
     )
     phone_number=models.CharField(max_length=14,null=True)
-    username = models.CharField(max_length=100, blank=True, null=False, unique=True)
+    username = models.CharField(max_length=100, blank=True, null=False,unique=True)
     is_staff = models.BooleanField(default=False)
     is_active = models.BooleanField(default=True)
     date_joined = models.DateTimeField(default=timezone.now)

@@ -9,11 +9,11 @@ document.addEventListener("DOMContentLoaded", async () => {
 // --------------------
 async function loadProfile() {
     try {
-        const res = await fetch('/accounts/api/profile/', {
+        const res = await fetch('http://127.0.0.1:8000/accounts/profile/', {
             method: 'GET',
             headers: {
                 'Content-Type': 'application/json',
-                'Authorization': 'Token ' + localStorage.getItem('token')
+                'Authorization': localStorage.getItem("Authorization")
             }
         });
 
@@ -23,7 +23,7 @@ async function loadProfile() {
 
         const profileCard = document.querySelector(".card-body.text-center");
         if (profileCard) {
-            profileCard.querySelector("h4").textContent = data.name;
+            profileCard.querySelector("h4").textContent = data.username;
             profileCard.querySelector("p").textContent = data.email;
         }
     } catch (err) {

@@ -19,6 +19,7 @@ document.addEventListener("DOMContentLoaded", () => {
       password2:signupForm.password.value
     };
 
+    console.log(JSON.stringify(formData))
     try {
       const response = await fetch("http://127.0.0.1:8000/accounts/register/", {
         method: "POST", 

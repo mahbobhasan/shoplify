@@ -17,17 +17,15 @@ class OrderListCreateAPIView(APIView):
         serializer = OrderSerializer(data=request.data)
         user=request.user
         items=get_list_or_404(OrderItem,user=user)
-        itemserializer=OrderItemSerializer(items,many=True)
-        print(itemserializer.data)
-        for item in itemserializer.data:
-            print(item)
+
         if serializer.is_valid():
             order=serializer.save(user=request.user)
             print(serializer.data)  
             for item in items:
                 qty=item.quantity
                 orderhistory=OrderHistory.objects.create(order=order,user=user,product=item.product,quntity=qty)
-                print(orderhistory)
+                # print(orderhistory)
+                item.product.quantity=item.product.quantity-qty
                 item.delete()
             return Response(serializer.data, status=status.HTTP_201_CREATED)
         print(serializer.errors)

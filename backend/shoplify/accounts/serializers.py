@@ -11,7 +11,7 @@ class UserRegisterSerializer(serializers.ModelSerializer):
 
     class Meta:
         model = CustomUser
-        fields = ['email',  'phone_number', 'division', 'password', 'password2']
+        fields = ['email',  'password', 'password2',"username"]
 
     def validate(self, data):
         if data['password'] != data['password2']:
@@ -21,6 +21,7 @@ class UserRegisterSerializer(serializers.ModelSerializer):
     def create(self, validated_data):
         validated_data.pop('password2')
         user = CustomUser.objects.create_user(
+            username=validated_data['username'],
             email=validated_data['email'],
             password=validated_data['password'],
             phone_number=validated_data.get('phone_number', ''),
